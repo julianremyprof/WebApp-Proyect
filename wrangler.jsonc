@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "prolearnin6",
+  "main": ".open-next/worker.js",
+  // Must be 2025-04-01 or later so wrangler-defined vars land in process.env
+  // the way OpenNext / Next.js expects.
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    // Static assets (JS/CSS chunks, images) produced by the OpenNext build.
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  // KV namespace used by OpenNext for the Next.js incremental cache
+  // (route/data cache, ISR). Create with:
+  //   wrangler kv namespace create prolearnin6-cache
+  // then paste the returned id below.
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_CACHE_WORKERS_KV",
+      "id": "REPLACE_WITH_KV_NAMESPACE_ID"
+    }
+  ],
+  // Non-secret config can live here. Secrets (Supabase service role key,
+  // etc.) must NOT be committed - set them with `wrangler secret put` or
+  // in the Cloudflare dashboard instead. See docs/CLOUDFLARE_DEPLOY.md.
+  "vars": {
+    "NEXT_PUBLIC_SITE_NAME": "ProLearnin6"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
