@@ -11,16 +11,17 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
-  // KV namespace used by OpenNext for the Next.js incremental cache
-  // (route/data cache, ISR). Create with:
-  //   wrangler kv namespace create prolearnin6-cache
-  // then paste the returned id below.
-  "kv_namespaces": [
-    {
-      "binding": "NEXT_CACHE_WORKERS_KV",
-      "id": "REPLACE_WITH_KV_NAMESPACE_ID"
-    }
-  ],
+  // KV namespace for the Next.js incremental cache (route/data cache,
+  // ISR) - OPTIONAL for a first deploy. Left commented out on purpose so
+  // a brand-new project deploys successfully without any extra setup;
+  // open-next.config.ts falls back to an in-memory cache until this is
+  // enabled. To turn it on:
+  //   1. npx wrangler kv namespace create prolearnin6-cache
+  //   2. paste the returned id below and uncomment this block
+  //   3. uncomment the kvIncrementalCache override in open-next.config.ts
+  // "kv_namespaces": [
+  //   { "binding": "NEXT_CACHE_WORKERS_KV", "id": "REPLACE_WITH_KV_NAMESPACE_ID" }
+  // ],
   // Non-secret config can live here. Secrets (Supabase service role key,
   // etc.) must NOT be committed - set them with `wrangler secret put` or
   // in the Cloudflare dashboard instead. See docs/CLOUDFLARE_DEPLOY.md.

@@ -1,0 +1,24 @@
+# Copy to `.dev.vars` for local `wrangler dev` / `opennextjs-cloudflare preview`.
+# These are RUNTIME secrets - never commit the real file (.dev.vars is
+# gitignored). In production, set the same keys with:
+#   wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+# or via Cloudflare dashboard > Workers & Pages > prolearnin6 > Settings >
+# Variables and Secrets ("Encrypt" toggled on).
+#
+# The anon key/site URL are also needed at runtime for the server-side
+# Supabase client, so they're repeated here even though they're already
+# public NEXT_PUBLIC_ build vars.
+
+NEXT_PUBLIC_SUPABASE_URL=https://YOUR-PROJECT-REF.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-public-key
+
+# Server-only. Used solely in trusted server contexts (API routes /
+# Route Handlers) for admin tasks such as awarding badges from a cron,
+# or Super Admin moderation actions. NEVER expose to the client.
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+
+# Optional: only needed once Phase 3 AI-assisted generation/feedback is
+# wired to a real provider. Leave unset to keep the AI Activity Generator
+# in its "not configured" state (see src/lib/ai/provider.ts).
+AI_PROVIDER=
+AI_API_KEY=
